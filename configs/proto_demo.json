@@ -1,0 +1,122 @@
+{
+  "version": "1.0",
+  "name": "DemoProto",
+  "bindings": [
+    {
+      "id": "b1",
+      "transport": "udp",
+      "udp_task": "udp",
+      "listen_port": 9000,
+      "peers": [{"ip":"127.0.0.1","port":9000}]
+    }
+  ],
+  "messages": [
+    {
+      "id": "PingReq",
+      "binding": "b1",
+      "match": { "all":[ {"offset":0,"equals_hex":"01"} ] },
+      "fields": [
+        {"name":"type","type":"u8","offset":0},
+        {"name":"seq","type":"u16","offset":1,"endian":"be"},
+        {"name":"flags","type":"u8","offset":3,"bits":[
+          {"name":"ack","pos":0,"len":1},
+          {"name":"urgent","pos":1,"len":1}
+        ]},
+        {"name":"len","type":"u8","offset":4},
+        {"name":"data","type":"bytes","offset":5,"len_from":"len"}
+      ],
+      "checksum": {
+        "algo":"crc16_modbus",
+        "range":{"from":0,"to":"end"},
+        "store_as":{"type":"u16","endian":"le","at":"end"}
+      }
+    },
+    {
+      "id": "PingRsp",
+      "compose": [
+        {"type":"u8","value_hex":"81"},
+        {"type":"u16","expr":"msg.seq","endian":"be"},
+        {"type":"u8","expr":"msg.flags.ack ? 1 : 0"},
+        {"type":"u8","expr":"msg.len"},
+        {"type":"bytes","from":"msg.data"},
+        {"checksum":{"algo":"crc16_modbus","range":{"from":0,"to":"end"}}}
+      ]
+    },
+    {
+      "id": "StatusReq",
+      "binding": "b1",
+      "match": { "all":[ {"offset":0,"equals_hex":"10"} ] },
+      "fields": [
+        {"name":"type","type":"u8","offset":0},
+        {"name":"wantDetail","type":"u8","offset":1,"bits":[{"name":"yes","pos":0,"len":1}]}
+      ]
+    },
+    {
+      "id": "StatusRsp",
+      "compose": [
+        {"type":"u8","value_hex":"90"},
+        {"type":"u32","expr":"now_ms()","endian":"be"},
+        {"type":"u8","expr":"data('ui.mode') == 'auto' ? 1 : 0"},
+        {"type":"u8","expr":"data('ui.speed')"}
+      ]
+    },
+    {
+      "id": "Heartbeat",
+      "compose": [
+        {"type":"u8","value_hex":"A0"},
+        {"type":"u32","expr":"now_ms()","endian":"be"}
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id":"r_ping",
+      "when":"on_receive",
+      "message":"PingReq",
+      "binding":"b1",
+      "if":"true",
+      "actions":[
+        {"type":"publish","topic":"proto.event","payload":{"event":"ping","seq":"${msg.seq}"}},
+        {"type":"reply","template":"PingRsp","to_peer":"source"},
+        {"type":"metric.inc","name":"rx.ping","by":1},
+        {"type":"state.set","scope":"session","key":"last_seq","expr":"msg.seq"}
+      ]
+    },
+    {
+      "id":"r_status",
+      "when":"on_receive",
+      "message":"StatusReq",
+      "binding":"b1",
+      "bt":{
+        "type":"sequence",
+        "children":[
+          {"type":"condition","expr":"msg.wantDetail.yes == 1 || true"},
+          {"type":"action","name":"publish","args":{"topic":"proto.event","payload":{"event":"status.req"}}},
+          {"type":"action","name":"reply","args":{"template":"StatusRsp","to_peer":"source"}},
+          {"type":"action","name":"timer","args":{
+            "delay_ms":2000,"repeat":2,
+            "action":{"type":"reply","template":"StatusRsp","to_peer":"source"}
+          }}
+        ]
+      }
+    },
+    {
+      "id":"r_heartbeat",
+      "when":"on_start",
+      "bt":{
+        "type":"sequence",
+        "children":[
+          {"type":"action","name":"timer","args":{
+            "delay_ms":1000,"repeat":-1,
+            "action":{"type":"reply","template":"Heartbeat","to_peer":"all"}
+          }}
+        ]
+      }
+    }
+  ],
+  "options": {
+    "endianness": "be",
+    "safety": { "max_packet_len": 1500 },
+    "debug": true
+  }
+}

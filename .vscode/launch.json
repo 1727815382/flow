@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run qt_task_demo.exe (Qt 5.9.9 MinGW)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/qt_task_demo.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}/build",
+      "environment": [
+        {
+          "name": "PATH",
+          "value": "E:/Qt/Qt5.9.9/5.9.9/mingw53_32/bin;E:/Qt/Qt5.9.9/Tools/mingw530_32/bin;${env:PATH}"
+        },
+        { "name": "QT_DEBUG_PLUGINS", "value": "1" }
+      ],
+      "externalConsole": true,
+      "MIMode": "gdb",
+      "miDebuggerPath": "E:/Qt/Qt5.9.9/Tools/mingw530_32/bin/gdb.exe"
+    }
+  ]
+}

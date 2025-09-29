@@ -1,0 +1,12 @@
+{
+  "cmake.generator": "MinGW Makefiles",
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.configureSettings": {
+    "CMAKE_PREFIX_PATH": "E:/Qt/Qt5.9.9/5.9.9/mingw53_32"
+    // "Qt5_DIR": "E:/Qt/Qt5.9.9/5.9.9/mingw53_32/lib/cmake/Qt5"
+  },
+  "cmake.environment": {
+    "PATH": "E:/Qt/Qt5.9.9/Tools/mingw530_32/bin;${env:PATH}"
+  },
+  "cmake.configureOnOpen": true
+}
