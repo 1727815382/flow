@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>img/LED1.png</file>
+        <file>img/LED2.png</file>
+        <file>img/LED3.png</file>
+        <file>img/LED4.png</file>
+        <file>img/pic.png</file>
+        <file>img/black.css</file>
+        <file>img/light.css</file>
+    </qresource>
+</RCC>

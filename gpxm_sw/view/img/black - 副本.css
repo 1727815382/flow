@@ -1,0 +1,263 @@
+/* 整体QTabWidget样式 */
+QWidget
+{
+    background-color: rgb(20,50,80); /* 内容区域背景色 */
+    color:white;
+
+    font: 75 15px "微软雅黑 Light";
+}
+
+QWidget#subWidget
+{
+    background-color: rgb(35,75,115);
+}
+
+QTabWidget {
+    background-color: rgb(35,75,115); /* 内容区域背景色 */
+    border: 1px solid rgb(35,75,115);
+    border-radius: 4px;
+}
+
+/* 标签栏样式 */
+QTabWidget::tab-bar {
+    alignment: center; /* 标签对齐方式：left/right/center */
+    background: #0000ff;
+}
+
+/* 标签页通用样式 */
+QTabBar::tab {
+    background-color: #d0d0d0;
+    border: 1px solid #c0c0c0;
+    border-bottom-color: #c8c8c8; /* 与QTabWidget边框一致 */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 6px 12px;
+    margin-right: 2px;
+    min-width: 80px;
+}
+
+/* 鼠标悬停标签 */
+QTabBar::tab:hover {
+    background-color: #e0e0e0;
+    border-color: #a0a0a0;
+}
+
+/* 当前选中标签 */
+QTabBar::tab:selected {
+    background-color: #ffffff;
+    border-color: #c8c8c8;
+    border-bottom-color: #ffffff; /* 与内容区域背景融合 */
+    margin-bottom: -1px; /* 覆盖边框 */
+    color: #2a82da;
+}
+
+/* 未选中标签（可选） */
+QTabBar::tab:!selected {
+    color: #666666;
+}
+
+/* 标签文本样式 */
+QTabBar::tab {
+    font: bold 12px "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
+/* 内容区域样式 */
+QTabWidget::pane
+{
+    border-top: 1px solid #c8c8c8;
+    background-color: rgb(20,50,80);
+    padding: 5px;
+    color:white;
+}
+
+QTableView::item
+{
+    height:24px;
+    color: white;
+    background: rgb(35,75,95);
+    border:None;
+    margin-top:0px;  /* 设置行间距 */
+}
+QTableWidget::item:alternate
+{
+    background-color: rgb(35,75,115);
+}
+
+/* 单元格悬停效果 */
+QTableWidget::item:hover {
+    background-color: #e0f0ff;
+    color:black;
+}
+
+QTableWidget::item:selected
+{
+    background-color: rgb(0,110,50); /* 选中背景色 */
+    color: black;              /* 选中文字颜色 */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+QHeaderView::section
+{
+    background-color: rgb(40, 100, 175); /* 表头背景色 */
+    color:  white; /* 表头文字颜色 */
+    font-size: 20px;
+    border:0px solid #7B95AF;
+    outline:1px;
+}
+
+/* 角落控件（如果有） */
+QTabWidget::cornerWidget
+{
+    background: #0000ff;
+    padding: 2px;
+}
+
+
+/* 设置QTableWidget整体背景（包括无内容时） */
+.QTableWidget {
+    background-color: rgb(35,75,115);  /* 默认背景色（浅灰蓝色） */
+    alternate-background-color: #e0e8ff;  /* 行交替颜色 */
+
+}
+
+/* 当单元格的 "customBackground" 属性为 "red" 时 */ 
+QTableWidget::item[customBackground="red"] { 
+    background-color: red; 
+} 
+
+/* 可选：设置网格线颜色 */
+QTableWidget {
+    gridline-color: #e0e0e0;
+}
+
+
+
+
+
+/***** 分组框 *****/
+QGroupBox {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #f9fafb; /* 更柔和的背景色 */
+    margin-top: 1.5em;
+    padding-top: 1px;
+
+    background-color: rgb(35,75,115); /* 内容区域背景色 */
+
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;  /* 关键定位属性 */
+
+    /* 宽度控制 */
+    left: 10px;        /* 左侧留出边框空间 */
+    right: 10px;       /* 右侧留出边框空间 */
+    top: 1px;        /* 向上移动覆盖边框 */
+
+    /* 样式修饰 */
+    background: rgb(55,115,180);
+    padding: 2px 10px;
+    border-radius: 3px;
+    border: 1px solid #c0c0c0;
+
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #f0f0f0,
+        stop:1 #e0e0e0);
+
+    /* 边框覆盖 */
+    border: 1px solid #c0c0c0;
+    border-bottom: none;  /* 避免重复边框 */
+
+    /* 文字样式 */
+    color: #333;
+    font-weight: bold;
+}
+
+
+
+QLabel
+{
+    background-color: rgb(35, 75, 115);
+    color:white;
+    max-height:30px;
+}
+
+.QLabel#titleLabel,#timeLab
+{
+    background-color: rgb(40, 100, 175);
+    font: 75 16pt "微软雅黑 Light";
+    color:white;
+    max-height:100px;
+}
+
+.QLabel#subTitleLabel
+{
+    background-color: rgb(40, 100, 175);
+    font: 75 15px "微软雅黑 Light";
+    color:white;
+    min-height:30px;
+}
+
+.QLabel#picLabel
+{
+max-height:5000px;
+
+}
+/* 基础样式未选中状态 */
+QPushButton {
+    background-color: #5b7cff; /* 未选中时的基础蓝色 */
+    color: white; /* 白色文字，与蓝色背景适配 */
+    border: none; /* 初始无边框 */
+    border-radius: 4px; /* 轻微圆角，提升质感 */
+    padding: 6px 12px;
+    min-width: 50px;
+    min-height: 40px;
+    font-size: 18px;
+}
+
+/* 鼠标悬浮状态 */
+QPushButton:hover {
+    background-color: #6d8aff; /* 亮一点的蓝色，增强交互感 */
+}
+
+/* 选中状态 */
+QPushButton:checked {
+    background-color: #fff3cd; /* 浅黄偏背景 */
+    color: #856404; /* 深黄色文字，与浅黄背景协调 */
+    border: 2px solid #ffeeba; /* 同色系边框，强化选中感 */
+}
+
+/* 选中+悬浮状态 */
+QPushButton:checked:hover {
+    background-color: #fff7d6; /* 稍亮的浅黄，保持悬浮反馈 */
+}
+
+/* 按下状态（无论是否选中） */
+QPushButton:pressed {
+    background-color: #ffeeba; /* 比选中状态更深一点的黄色 */
+    color: #856404; /* 统一的深黄色文字 */
+    border: 2px solid white; /* 白色边框，突出按下效果 */
+    padding-top: 7px; /* 轻微位移，模拟按下触感 */
+    padding-bottom: 5px;
+}
+
+/* 选中+按下状态（优先级高于单纯按下） */
+QPushButton:checked:pressed {
+    background-color: #ffecb5; /* 选中状态下的按下颜色 */
+}
+
+/* 禁用状态 */
+QPushButton:disabled {
+    background-color: #e2e3e5; /* 浅灰色背景 */
+    color: #868e96; /* 中灰色文字 */
+    border: none; /* 禁用时无边框 */
+}
+
+/* 选中+禁用状态 */
+QPushButton:checked:disabled {
+    background-color: #f8f9fa; /* 更浅的背景，区分选中但不可用 */
+    color: #adb5bd;
+    border: 2px solid #dee2e6; /* 浅色边框，保留选中形态 */
+}

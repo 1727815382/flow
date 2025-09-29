@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWidget</class>
+ <widget class="QWidget" name="MainWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1081</width>
+    <height>601</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>5</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;font: 75 10pt &amp;quot;微软雅黑 Light&amp;quot;;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>工作界面</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="topMargin">
+        <number>3</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="WorkForm" name="workWgt" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>参数配置</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="topMargin">
+        <number>3</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="ConfigForm" name="ConfigWgt" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>轨排数据</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <property name="topMargin">
+        <number>3</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="DataForm" name="DataWgt" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>精调数据</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <property name="topMargin">
+        <number>3</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="TuingForm" name="TuingWgt" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_5">
+      <attribute name="title">
+       <string>电机调试</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="topMargin">
+        <number>3</number>
+       </property>
+       <item>
+        <widget class="MultiPlcClientForm" name="widget" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_6">
+      <attribute name="title">
+       <string> 系统配置</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="topMargin">
+        <number>3</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="SystemConfigForm" name="SysCfgWgt" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WorkForm</class>
+   <extends>QWidget</extends>
+   <header location="global">WorkForm.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ConfigForm</class>
+   <extends>QWidget</extends>
+   <header location="global">configform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TuingForm</class>
+   <extends>QWidget</extends>
+   <header location="global">Tuingform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>DataForm</class>
+   <extends>QWidget</extends>
+   <header location="global">dataform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MultiPlcClientForm</class>
+   <extends>QWidget</extends>
+   <header>multiplcclientform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SystemConfigForm</class>
+   <extends>QWidget</extends>
+   <header location="global">SystemConfigForm.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
